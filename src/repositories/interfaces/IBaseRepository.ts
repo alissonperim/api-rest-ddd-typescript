@@ -5,5 +5,5 @@ export interface IBaseRepository<T, M> {
   update(id: string): Promise<boolean>
   detele(id: string): Promise<boolean>
   findOne(id: string): Promise<T>
-  find(obj: T): Promise<T[]>
+  find(): Promise<T[]>
 }

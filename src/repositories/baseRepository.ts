@@ -4,8 +4,13 @@ import { Mongoose } from "../infra/dataBase";
 
 export class BaseRepository<T, M> implements IBaseRepository<T, M>{
   constructor() { }
-  create(obj: T, model: Model<M>): Promise<boolean> {
-    throw new Error("Method not implemented.");
+  async create(obj: T, model: Model<M>): Promise<boolean> {
+    try {
+      await model.create(obj)
+      return true
+    } catch (error) {
+      throw new Error(error);
+    }
   }
   update(id: string): Promise<boolean> {
     throw new Error("Method not implemented.");
@@ -16,7 +21,7 @@ export class BaseRepository<T, M> implements IBaseRepository<T, M>{
   findOne(id: string): Promise<T> {
     throw new Error("Method not implemented.");
   }
-  find(obj: T): Promise<T[]> {
+  find(): Promise<T[]> {
     throw new Error("Method not implemented.");
   }
 }
